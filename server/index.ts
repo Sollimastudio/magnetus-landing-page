@@ -1,5 +1,4 @@
 import express from "express";
-import { createServer } from "http";
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -8,26 +7,30 @@ const __dirname = path.dirname(__filename);
 
 async function startServer() {
   const app = express();
-  const server = createServer(app);
 
-  // Serve static files from dist/public in production
-  const staticPath =
-    process.env.NODE_ENV === "production"
-      ? path.resolve(__dirname, "public")
-      : path.resolve(__dirname, "..", "dist", "public");
+  // Get the public directory path
+  const publicPath = path.join(__dirname, "..", "dist", "public");
+  
+  console.log("Serving static files from:", publicPath);
 
-  app.use(express.static(staticPath));
+  // Serve all static files
+  app.use(express.static(publicPath));
 
-  // Handle client-side routing - serve index.html for all routes
+  // Catch-all: serve index.html for client-side routing
   app.get("*", (_req, res) => {
-    res.sendFile(path.join(staticPath, "index.html"));
+    const indexPath = path.join(publicPath, "index.html");
+    console.log("Serving index.html from:", indexPath);
+    res.sendFile(indexPath);
   });
 
   const port = process.env.PORT || 3000;
 
-  server.listen(port, () => {
-    console.log(`Server running on http://localhost:${port}/`);
+  app.listen(port, "0.0.0.0", () => {
+    console.log(`✅ Server running on port ${port}`);
   });
 }
 
-startServer().catch(console.error);
+startServer().catch((err) => {
+  console.error("❌ Server error:", err);
+  process.exit(1);
+});

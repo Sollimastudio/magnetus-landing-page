@@ -74,13 +74,9 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-black text-foreground overflow-x-hidden">
       {/* HERO SECTION */}
-      <header className="relative min-h-screen flex items-center justify-center overflow-hidden bg-silk" style={{backgroundImage: 'url(https://d2xsxph8kpxj0f.cloudfront.net/310519663374998284/WD4iXKUYMQAx6qrV7pXDRN/satin-texture-background-Dbwk3BSeHpCJWRjyTzFXPh.webp)'}}>
-        {/* Animated Wave Background */}
-        <div className="absolute inset-0 z-0 opacity-20">
-          <svg viewBox="0 0 1000 1000" className="w-[200%] h-full silk-wave" preserveAspectRatio="none">
-            <path d="M0,500 C150,300 350,700 500,500 C650,300 850,700 1000,500 L1000,1000 L0,1000 Z" fill="#2d0202" />
-          </svg>
-        </div>
+      <header className="relative min-h-screen flex items-center justify-center overflow-hidden" style={{backgroundImage: 'url(/images/hero-edited.png)', backgroundSize: 'cover', backgroundPosition: 'center'}}>
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0 bg-black/40 z-0"></div>
 
         {/* Hero Content - CENTRALIZADO */}
         <div className="container mx-auto px-6 relative z-10 text-center">

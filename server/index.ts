@@ -8,8 +8,8 @@ const __dirname = path.dirname(__filename);
 async function startServer() {
   const app = express();
 
-  // Get the public directory path
-  const publicPath = path.join(__dirname, "..", "dist", "public");
+  // Get the public directory path (dist/index.js is in dist/, so public is dist/public)
+  const publicPath = path.join(__dirname, "public");
   
   console.log("Serving static files from:", publicPath);
 

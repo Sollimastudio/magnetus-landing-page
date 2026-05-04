@@ -367,7 +367,7 @@ export default function Home() {
               
               {/* Bundle Image com os 2 ebooks */}
               <img 
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663374998284/WD4iXKUYMQAx6qrV7pXDRN/offer-bundle-both-ebooks-dRE8bmbbgrwEvmdpC5RVR3.webp"
+                src="/images/offer-bundle.png"
                 alt="Magnetus III + Antídoto do Antivalor Bundle"
                 className="w-full h-full object-cover rounded-2xl"
               />
@@ -399,10 +399,10 @@ export default function Home() {
 
             <div className="py-10 border-t border-gold/10">
               <div className="flex items-baseline justify-center gap-4 mb-2">
-                <span className="text-7xl font-bold gold-text">R$ 59,90</span>
+                <span className="text-7xl font-bold gold-text">R$ 69,90</span>
                 <span className="text-gray-500 font-light uppercase text-xs tracking-widest">à vista</span>
               </div>
-              <p className="text-xl italic text-gray-300">Ou 12x de <span className="text-white font-bold">R$ 5,98</span></p>
+              <p className="text-xl italic text-gray-300">Ou 12x de <span className="text-white font-bold">R$ 6,99</span></p>
             </div>
 
             <a 

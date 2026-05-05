@@ -106,33 +106,6 @@ export default function Home() {
                 </div>
               </div>
             </div>
-
-            {/* Right: Hero Image */}
-            <div className="relative reveal animate-slide-in-right flex justify-center" style={{ transitionDelay: '800ms' }}>
-              <div className="relative group">
-                <div className="glass-card aspect-[3/4] p-8 flex flex-col justify-between relative overflow-hidden border-2 border-gold/20 shadow-2xl glow-gold max-w-sm">
-                  <div className="absolute -right-20 -top-20 opacity-5">
-                    <span className="text-[25rem] font-serif italic">SL</span>
-                  </div>
-                  
-                  {/* Ebook Image - Capa Corrigida */}
-                  <img 
-                    src="https://d2xsxph8kpxj0f.cloudfront.net/310519663374998284/WD4iXKUYMQAx6qrV7pXDRN/magnetus-correct-cover-JQ8pPovzTJShiygunWJyyB.webp" 
-                    alt="Magnetus III - O Manual da Atração Soberana"
-                    className="w-full h-full object-cover rounded-2xl"
-                  />
-                  
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/50 to-transparent p-6 z-10">
-                    <div className="gold-text text-2xl md:text-3xl font-serif italic">Magnetus III</div>
-                    <p className="text-xs tracking-[0.4em] text-gold/60 uppercase">Manual da Atração Soberana</p>
-                  </div>
-                </div>
-
-                {/* Floating Badge */}
-                <div className="absolute -bottom-8 -left-8 w-32 h-32 flex items-center justify-center text-center p-4 shadow-2xl -rotate-12 group-hover:rotate-0 transition-transform duration-700" style={{backgroundImage: 'url(https://d2xsxph8kpxj0f.cloudfront.net/310519663374998284/WD4iXKUYMQAx6qrV7pXDRN/seal-guarantee-premium-Dbwk3BSeHpCJWRjyTzFXPh.webp)', backgroundSize: 'cover', backgroundPosition: 'center'}}>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
 

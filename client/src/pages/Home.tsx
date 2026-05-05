@@ -406,7 +406,28 @@ export default function Home() {
             <div className="space-y-6">
               <h3 className="text-3xl font-serif italic gold-text">Sol Lima</h3>
               <p className="text-gray-400 text-lg leading-relaxed italic">
-                A sociedade passou a vida inteira te dizendo para "apenas ser você mesmo" e esperar ser notado. Sol Lima mapeou a engenharia reversa do porquê isso é a maior mentira que já te contaram. Estrategista de comportamento e criadora do método Magnetus, ela entendeu que presença não é sorte — é matemática social. Sol elaborou este manual para destruir seus antivalores e instalar uma única certeza: a de que o respeito não se pede, se impõe. Se você quiser tentar agradar, ela escreveu seu novo modo de operar.
+                Ela não ensina mulheres a agradar.
+                <br />Ela ensina mulheres a pararem de se diminuir para caber.
+              </p>
+              <p className="text-gray-400 text-lg leading-relaxed italic">
+                Sol Lima é uma estudiosa do comportamento humano feminino na prática — não no discurso bonito de internet, mas naquilo que acontece quando ninguém está olhando:
+                <br />na mensagem não respondida, na ansiedade antes do encontro, na dúvida silenciosa de "por que eu nunca sou a escolhida?"
+              </p>
+              <p className="text-gray-400 text-lg leading-relaxed italic">
+                Ao longo da sua trajetória, Sol percebeu um padrão inquietante:
+                <br />mulheres incríveis se tornando invisíveis… não por falta de beleza, mas por excesso de adaptação.
+              </p>
+              <p className="text-gray-400 text-lg leading-relaxed italic">
+                Foi mergulhando em padrões emocionais, dinâmicas de atração e autopercepção que ela desenvolveu um método direto, provocativo e impossível de ignorar.
+              </p>
+              <p className="text-gray-400 text-lg leading-relaxed italic font-bold">
+                Sem romantizar.
+                <br />Sem frases prontas.
+                <br />Sem promessas vazias.
+              </p>
+              <p className="text-gray-400 text-lg leading-relaxed italic">
+                O trabalho de Sol não é sobre "conquistar alguém".
+                <br />É sobre se reposicionar de forma tão forte que a dinâmica inteira muda.
               </p>
               <p className="text-gold text-xl italic font-serif mb-6 leading-relaxed">
                 Eles queriam que você fosse boazinha.<br />Eu vou te ensinar a ser inesquecível.<br />Reescreva as regras.

@@ -354,66 +354,23 @@ export default function Home() {
         </div>
       </section>
 
-      {/* OFFER SECTION - CENTRALIZADO */}
-      <section id="oferta" className="py-32 bg-silk px-6 border-y border-gold/10" style={{backgroundImage: 'url(https://d2xsxph8kpxj0f.cloudfront.net/310519663374998284/WD4iXKUYMQAx6qrV7pXDRN/satin-texture-background-Dbwk3BSeHpCJWRjyTzFXPh.webp)'}}>
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
-          
-          {/* Product Image - MELHORADA */}
-          <div className="relative group reveal flex justify-center">
-            <div className="glass-card aspect-[3/4] p-10 flex flex-col justify-between relative overflow-hidden border-2 border-gold/20 shadow-2xl glow-gold max-w-sm">
-              <div className="absolute -right-20 -top-20 opacity-5">
-                <span className="text-[25rem] font-serif italic">SL</span>
-              </div>
-              
-              {/* Bundle Image com os 2 ebooks */}
-              <img 
-                src="/images/offer-bundle.png"
-                alt="Magnetus III + Antídoto do Antivalor Bundle"
-                className="w-full h-full object-cover rounded-2xl"
-              />
-              
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent rounded-2xl"></div>
-              
-              <div className="z-10 absolute bottom-0 left-0 right-0 p-6 text-center">
-                <div className="gold-text text-4xl md:text-5xl font-serif italic mb-2">Magnetus III</div>
-                <p className="text-xs tracking-[0.4em] text-gold/60 uppercase">+ Antídoto do Antivalor</p>
-              </div>
-            </div>
-            
-            <div className="absolute -bottom-8 -left-8 w-32 h-32 flex items-center justify-center text-center p-4 shadow-2xl -rotate-12 group-hover:rotate-0 transition-transform duration-700" style={{backgroundImage: 'url(https://d2xsxph8kpxj0f.cloudfront.net/310519663374998284/WD4iXKUYMQAx6qrV7pXDRN/seal-guarantee-premium-Dbwk3BSeHpCJWRjyTzFXPh.webp)', backgroundSize: 'cover', backgroundPosition: 'center'}}>
-            </div>
-          </div>
-
-          {/* Offer Details - CENTRALIZADO */}
-          <div className="space-y-10 reveal text-center">
-            <h2 className="text-5xl md:text-7xl leading-none font-serif italic text-white">Assume o teu <br /><span className="gold-text">Lugar no Topo</span>.</h2>
-            
-            <ul className="space-y-6 flex flex-col items-center">
-              <li className="flex items-center gap-5 text-lg text-gray-300">
-                <span className="text-gold text-2xl font-serif italic">01.</span> Protocolo de 15 Dias Magnetus III
-              </li>
-              <li className="flex items-center gap-5 text-lg text-gray-300">
-                <span className="text-gold text-2xl font-serif italic">02.</span> Bónus: O Antídoto do Antivalor (Secreto)
-              </li>
-            </ul>
-
-            <div className="py-10 border-t border-gold/10">
-              <div className="flex items-baseline justify-center gap-4 mb-2">
-                <span className="text-7xl font-bold gold-text">R$ 69,90</span>
-                <span className="text-gray-500 font-light uppercase text-xs tracking-widest">à vista</span>
-              </div>
-              <p className="text-xl italic text-gray-300">Ou 12x de <span className="text-white font-bold">R$ 6,99</span></p>
-            </div>
-
-            <a 
-              href="https://pay.kirvano.com/0ef2fba1-c83e-46bf-9632-51117043d8b5"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-gold w-full block text-center py-7 rounded-2xl text-xl uppercase font-black tracking-widest hover:scale-105 transition-transform mx-auto"
-            >
-              Ativar o meu Magnetismo Agora
-            </a>
-          </div>
+      {/* OFFER SECTION - FULL WIDTH IMAGE */}
+      <section id="oferta" className="relative bg-black border-y border-gold/10">
+        <img 
+          src="/images/offer-section.png"
+          alt="Magnetus III - Oferta Completa"
+          className="w-full h-auto object-contain"
+        />
+        {/* Overlay Button for Mobile/Fallback */}
+        <div className="absolute inset-0 flex items-end justify-center pb-12 pointer-events-none">
+          <a 
+            href="https://pay.kirvano.com/0ef2fba1-c83e-46bf-9632-51117043d8b5"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-gold px-12 py-4 rounded-full text-sm uppercase font-black tracking-widest hover:scale-110 transition-transform pointer-events-auto"
+          >
+            Ativar Magnetismo Agora
+          </a>
         </div>
       </section>
 

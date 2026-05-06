@@ -1,59 +1,50 @@
-import { useState, useEffect } from 'react';
-import { ChevronDown, Plus } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { ChevronDown } from 'lucide-react';
 import EmailCaptureForm from '@/components/EmailCaptureForm';
 
-/**
- * DESIGN PHILOSOPHY: Luxo Sensorial com Drama
- * - Paleta: Preto Profundo (#050505) + Ouro Gradiente (#D4AF37) + Burgundy (#4A0404)
- * - Tipografia: Playfair Display (elegância) + Inter (modernidade)
- * - Atmosfera: Sofisticada, provocadora, sensorial
- * - Efeitos: Glass-morphism, gradientes, texturas de cetim, animações fluidas
- * - CENTRALIZAÇÃO: Todos os textos centralizados para máximo impacto
- */
-
 export default function Home() {
-  const [revealElements, setRevealElements] = useState<Set<number>>(new Set());
   const [aiInput, setAiInput] = useState('');
   const [aiLoading, setAiLoading] = useState(false);
   const [aiResult, setAiResult] = useState<string | null>(null);
+  const [aiError, setAiError] = useState<string | null>(null);
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
 
-  // Scroll reveal animation
+  const lastQuestionRef = useRef<string>('');
+
   useEffect(() => {
     const handleScroll = () => {
-      const reveals = document.querySelectorAll('.reveal');
-      reveals.forEach((element, index) => {
-        const windowHeight = window.innerHeight;
-        const elementTop = element.getBoundingClientRect().top;
-        const elementVisible = 100;
-
-        if (elementTop < windowHeight - elementVisible) {
-          setRevealElements(prev => new Set(prev).add(index));
-          element.classList.add('active');
+      document.querySelectorAll('.reveal').forEach((el) => {
+        if (el.getBoundingClientRect().top < window.innerHeight - 100) {
+          el.classList.add('active');
         }
       });
     };
-
     window.addEventListener('scroll', handleScroll);
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Simulated AI response
   const handleAIReframe = async () => {
     if (!aiInput.trim()) return;
-
     setAiLoading(true);
-    setTimeout(() => {
-      const responses = [
-        `Você está presa na "Bolha da Aprovação". Aquele silêncio que você sente? É o vazio que deixa quando você para de pedir permissão para existir. Seu "Comando de Governo" é imediato: hoje, você não explica, não justifica, não negocia. Você decide. A coroa caiu porque você estava esperando que alguém a colocasse. Levante-a você mesma.`,
-        `Identifiquei a "Morte em Vida" - você está visível, mas invisível. Funcionando, mas vazia. Seu código está corrompido pela necessidade de ser "a mulher legal". Seu Comando: Neste exato momento, escolha uma coisa que você quer e que ninguém quer que você tenha. Faça. O governo começa aqui.`,
-        `Você está no "Feminicídio Emocional" - aquela erosão lenta onde você resolve tudo mas ninguém te valoriza. Seu poder não está em fazer mais, está em exigir mais. Seu Comando de Governo: Pare. Hoje você não oferece nada. Observe quem sente falta de você. Aí está seu verdadeiro valor.`
-      ];
-      const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-      setAiResult(randomResponse);
+    setAiError(null);
+    setAiResult(null);
+    lastQuestionRef.current = aiInput.trim();
+
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: aiInput }),
+      });
+      if (!res.ok) throw new Error('Erro na resposta');
+      const data = await res.json();
+      setAiResult(data.response);
+    } catch {
+      setAiError('Algo correu mal. Tenta novamente.');
+    } finally {
       setAiLoading(false);
-    }, 1500);
+    }
   };
 
   const faqItems = [
@@ -115,8 +106,7 @@ export default function Home() {
         </div>
       </header>
 
-      {/* EMAIL CAPTURE SECTION */}
-      <EmailCaptureForm />
+      <EmailCaptureForm lastQuestion={lastQuestionRef.current} />
 
       {/* AI MIRROR SECTION - CENTRALIZADO */}
       <section className="py-32 bg-zinc-950 px-6 border-y border-gold/10 relative text-center">
@@ -149,15 +139,13 @@ export default function Home() {
               </button>
             </div>
 
-            {/* AI Result */}
+            {aiError && <p className="mt-6 text-red-400 text-sm text-center">{aiError}</p>}
             {aiResult && (
               <div className="mt-12 p-8 ai-response-box rounded-2xl reveal active animate-scale-up text-center">
                 <div className="flex items-center justify-center gap-3 mb-6">
                   <span className="text-gold font-bold text-xs uppercase tracking-widest">Resposta de Sol Lima AI</span>
                 </div>
-                <div className="text-gray-300 leading-relaxed italic text-lg space-y-4">
-                  {aiResult}
-                </div>
+                <div className="text-gray-300 leading-relaxed italic text-lg space-y-4 whitespace-pre-wrap">{aiResult}</div>
                 <div className="mt-8 flex justify-center">
                   <a href="#oferta" className="text-gold text-xs uppercase tracking-[0.3em] font-bold hover:opacity-70 transition-opacity border-b border-gold/30 pb-1">
                     Aprender o protocolo completo no Magnetus III
@@ -327,6 +315,60 @@ export default function Home() {
         </div>
       </section>
 
+      {/* MATERIAIS SECTION */}
+      <section className="py-32 bg-zinc-950 px-6 border-b border-gold/10">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-24 reveal">
+            <h2 className="text-4xl md:text-6xl gold-text mb-6 uppercase tracking-tighter italic font-serif">O Acervo Soberano</h2>
+            <p className="text-gray-400 text-xl italic">O conhecimento exato para retomar o seu trono</p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-16 items-stretch">
+            {/* EBOOK PRINCIPAL */}
+            <div className="glass-card p-10 flex flex-col items-center text-center reveal border border-gold/20 rounded-3xl relative">
+              <div className="absolute -top-4 bg-gold text-black text-[10px] font-bold px-4 py-1 rounded-full uppercase tracking-tighter">Material Principal</div>
+              <img 
+                src="/images/ebook magnetus.jpeg" 
+                alt="Magnetus Feminino" 
+                className="w-64 h-auto object-cover rounded-xl mb-8 shadow-2xl glow-gold"
+              />
+              <h3 className="text-3xl font-serif italic text-white mb-6">Magnetus Feminino</h3>
+              <div className="text-gray-300 text-base leading-relaxed space-y-4">
+                <p>
+                  Um guia direto para despertar sua presença magnética, elevar seu valor percebido e ativar a energia feminina que atrai naturalmente amor, respeito e desejo.
+                </p>
+                <p>
+                  Aprenda a se posicionar com confiança e se tornar inesquecível sem correr atrás de ninguém.
+                </p>
+              </div>
+            </div>
+
+            {/* EBOOK BONUS */}
+            <div className="glass-card p-10 flex flex-col items-center text-center reveal border border-white/10 rounded-3xl relative">
+              <div className="absolute -top-4 bg-white/20 text-white border border-white/30 text-[10px] font-bold px-4 py-1 rounded-full uppercase tracking-tighter">Bônus Exclusivo</div>
+              <img 
+                src="/images/ebook ANTIDITI FEMININO-capa .png" 
+                alt="Antídoto do Antivalor" 
+                className="w-64 h-auto object-cover rounded-xl mb-8 shadow-2xl"
+              />
+              <h3 className="text-3xl font-serif italic text-white mb-6">Antídoto do Antivalor</h3>
+              <h4 className="text-gold text-sm uppercase tracking-widest mb-6 font-bold">Manual de Autocirurgia</h4>
+              <div className="text-gray-300 text-base leading-relaxed space-y-4">
+                <p>
+                  Descubra os padrões, hábitos e defesas emocionais que sabotam sua imagem, afastam oportunidades e diminuem seu valor percebido.
+                </p>
+                <p>
+                  Este guia mostra como eliminar o que te enfraquece, romper ciclos repetitivos e recuperar sua força natural.
+                </p>
+                <p className="text-gold italic font-serif mt-4 text-xl">
+                  "Às vezes, o problema não é o que falta — é o que precisa sair."
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* OFFER SECTION - FULL WIDTH IMAGE */}
       <section id="oferta" className="relative bg-black border-y border-gold/10">
         <img 
@@ -364,50 +406,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* AUTHOR SECTION - CENTRALIZADO */}
       <section className="py-32 bg-black px-6 border-b border-gold/10">
         <div className="max-w-4xl mx-auto text-center reveal">
           <h2 className="text-4xl md:text-5xl font-serif italic text-white mb-12">Sobre a Autora</h2>
-          
           <div className="flex flex-col items-center gap-12">
-            <img 
-              src="/images/sol-lima.jpg"
-              alt="Sol Lima - Autora de Magnetus III"
-              className="w-64 h-80 object-cover rounded-2xl shadow-2xl glow-gold"
-            />
-            
+            <img src="/images/sol-lima.jpg" alt="Sol Lima - Autora de Magnetus III" className="w-64 h-80 object-cover rounded-2xl shadow-2xl glow-gold" />
             <div className="space-y-6">
               <h3 className="text-3xl font-serif italic gold-text">Sol Lima</h3>
-              <p className="text-gray-400 text-lg leading-relaxed italic">
-                Ela não ensina mulheres a agradar.
-                <br />Ela ensina mulheres a pararem de se diminuir para caber.
-              </p>
-              <p className="text-gray-400 text-lg leading-relaxed italic">
-                Sol Lima é uma estudiosa do comportamento humano feminino na prática — não no discurso bonito de internet, mas naquilo que acontece quando ninguém está olhando:
-                <br />na mensagem não respondida, na ansiedade antes do encontro, na dúvida silenciosa de "por que eu nunca sou a escolhida?"
-              </p>
-              <p className="text-gray-400 text-lg leading-relaxed italic">
-                Ao longo da sua trajetória, Sol percebeu um padrão inquietante:
-                <br />mulheres incríveis se tornando invisíveis… não por falta de beleza, mas por excesso de adaptação.
-              </p>
-              <p className="text-gray-400 text-lg leading-relaxed italic">
-                Foi mergulhando em padrões emocionais, dinâmicas de atração e autopercepção que ela desenvolveu um método direto, provocativo e impossível de ignorar.
-              </p>
-              <p className="text-gray-400 text-lg leading-relaxed italic font-bold">
-                Sem romantizar.
-                <br />Sem frases prontas.
-                <br />Sem promessas vazias.
-              </p>
-              <p className="text-gray-400 text-lg leading-relaxed italic">
-                O trabalho de Sol não é sobre "conquistar alguém".
-                <br />É sobre se reposicionar de forma tão forte que a dinâmica inteira muda.
-              </p>
-              <p className="text-gold text-xl italic font-serif mb-6 leading-relaxed">
-                Eles queriam que você fosse boazinha.<br />Eu vou te ensinar a ser inesquecível.<br />Reescreva as regras.
-              </p>
-              <p className="text-gold text-sm uppercase tracking-widest font-bold">
-                12.000+ mulheres ativadas | Bestseller em 3 países | Especialista em Governo Pessoal
-              </p>
+              <p className="text-gray-400 text-lg leading-relaxed italic">Ela não ensina mulheres a agradar.<br />Ela ensina mulheres a pararem de se diminuir para caber.</p>
+              <p className="text-gray-400 text-lg leading-relaxed italic">Sol Lima é uma estudiosa do comportamento humano feminino na prática — não no discurso bonito de internet, mas naquilo que acontece quando ninguém está olhando.</p>
+              <p className="text-gold text-xl italic font-serif mb-6 leading-relaxed">Eles queriam que você fosse boazinha.<br />Eu vou te ensinar a ser inesquecível.<br />Reescreva as regras.</p>
+              <p className="text-gold text-sm uppercase tracking-widest font-bold">12.000+ mulheres ativadas | Bestseller em 3 países | Especialista em Governo Pessoal</p>
             </div>
           </div>
         </div>

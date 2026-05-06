@@ -64,46 +64,15 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-black text-foreground overflow-x-hidden">
-      {/* HERO SECTION */}
-      <header className="relative min-h-screen flex items-center justify-center overflow-hidden" style={{backgroundImage: 'url(/images/hero-edited.png)', backgroundSize: 'cover', backgroundPosition: 'center'}}>
-        {/* Dark overlay for text readability */}
-        <div className="absolute inset-0 bg-black/40 z-0"></div>
-
-        {/* Hero Content - CENTRALIZADO */}
-        <div className="container mx-auto px-6 relative z-10 text-center">
-          <div className="grid lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
-            {/* Left: Text Content - CENTRALIZADO */}
-            <div className="text-center flex flex-col items-center justify-center">
-              <span className="inline-block uppercase tracking-[0.4em] text-[10px] md:text-xs mb-8 gold-text reveal animate-fade-in">
-                A Sobrevivência é um ato de Governo
-              </span>
-              
-              <h1 className="text-5xl md:text-7xl leading-[1.1] mb-10 reveal font-serif italic text-center" style={{ transitionDelay: '200ms' }}>
-                Ensinaram-te a <span className="italic font-light">esperar</span>.<br />
-                Vim ensinar-te a <span className="gold-text font-bold">governar</span>.
-              </h1>
-              
-              <p className="text-lg md:text-2xl text-gray-400 font-light italic mb-14 leading-relaxed reveal text-center" style={{ transitionDelay: '400ms' }}>
-                O manual da atração soberana para quem cansou de aceitar migalhas em pratos de porcelana.
-              </p>
-              
-              <div className="flex flex-col items-center gap-6 reveal" style={{ transitionDelay: '600ms' }}>
-                <a href="#oferta" className="btn-gold px-10 py-5 md:px-16 md:py-7 rounded-full text-sm md:text-lg uppercase font-bold hover:scale-105 transition-transform">
-                  Ressignificar a minha história
-                </a>
-                <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-gray-500">
-                  <span className="w-2 h-2 rounded-full bg-gold animate-pulse-gold"></span>
-                  Mais de 12.000 mulheres ativadas
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce">
-          <ChevronDown className="w-6 h-6 text-gold/50" />
-        </div>
+      {/* HERO SECTION - IMAGEM ORIGINAL LIMPA */}
+      <header className="relative w-full bg-black">
+        <a href="#oferta" className="block w-full transition-opacity hover:opacity-95">
+          <img 
+            src="/images/herooo.png" 
+            alt="Ensinaram-te a esperar. Vim ensinar-te a governar." 
+            className="w-full h-auto max-w-2xl mx-auto md:max-w-4xl lg:max-w-full"
+          />
+        </a>
       </header>
 
       <EmailCaptureForm lastQuestion={lastQuestionRef.current} />

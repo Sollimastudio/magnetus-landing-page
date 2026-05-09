@@ -6,17 +6,8 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 
-/**
- * DESIGN PHILOSOPHY: Luxo Sensorial com Drama
- * Magnetus III - O Manual da Atração Soberana
- * 
- * Paleta: Preto Profundo (#050505) + Ouro Gradiente (#D4AF37) + Burgundy (#4A0404)
- * Tipografia: Playfair Display (elegância) + Inter (modernidade)
- * Atmosfera: Sofisticada, provocadora, sensorial
- * Efeitos: Glass-morphism, gradientes, texturas, animações fluidas
- */
-
 function Router() {
+  // make sure to consider if you need authentication for certain routes
   return (
     <Switch>
       <Route path={"/"} component={Home} />
@@ -27,11 +18,17 @@ function Router() {
   );
 }
 
+// NOTE: About Theme
+// - First choose a default theme according to your design style (dark or light bg), than change color palette in index.css
+//   to keep consistent foreground/background color across components
+// - If you want to make theme switchable, pass `switchable` ThemeProvider and use `useTheme` hook
+
 function App() {
   return (
     <ErrorBoundary>
       <ThemeProvider
         defaultTheme="dark"
+        // switchable
       >
         <TooltipProvider>
           <Toaster />
